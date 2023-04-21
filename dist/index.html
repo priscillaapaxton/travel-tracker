@@ -7,8 +7,49 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <nav class="logout">
+    <button class="logout-button" type="button">logout</button>
+  </button>
+  </nav>
+  <main class="main">
+    <div class="left-container">
+      <div class="user-summary">
+        <h1 class="user-welcome">Welcome User!</h1>
+        <p class="user history">You've spent X on trips this year. you sure love to travel!</p>
+      </div>
+      <div class="past-trips-display">
+        <p>Past Trips!</p>
+      </div>
+    </div>
+    <div class="right-container">
+      <div class="user-input-form">
+        <form class="user-inputs">
+          <div class="date-container">
+            <p class="date">Date:</p>
+            <input class="date-input" type="date" id="date">
+            <input class="date-input" type="date" id="date">
+          </div>
+          <div class="traveler-container">
+            <p class="travelers">Number of Travelers:</p>
+            <input class="travelers-input" type="number" id="numTravelers" min="1">
+          </div>
+          <div class="destination-container">
+            <p for="destination-input">Destination:</p>
+            <select name="destination" id="destination">
+              <option value="destination-one">JavaScript</option>
+              <option value="destination-two">Python</option>
+              <option value="destination-three">C++</option>
+              <option value="destination-four">Java</option>
+            </select>
+          </div>
+          <button class="add-data-button" type="button">Make Trip Request</button>
+        </form>
+      </div>
+      <div class="upcoming-trips-display">
+        <p>Upcoming Trips!</p>
+      </div>
+    </div>
+  </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
