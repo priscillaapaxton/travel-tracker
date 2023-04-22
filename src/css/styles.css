@@ -38,7 +38,7 @@ time, mark, audio, video {
   flex-shrink: 0;
   width: 175px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   /* flex-direction: column; */
 }
@@ -52,6 +52,17 @@ time, mark, audio, video {
   width: 50%;
   display: flex;
   flex-direction: column;
+}
+
+.past-destination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.past-destination {
+  width: 200px;
+  height: auto;
 }
 
 .user-summary {
