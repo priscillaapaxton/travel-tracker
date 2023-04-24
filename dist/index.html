@@ -14,35 +14,39 @@
   <main class="main">
     <div class="left-container">
       <div class="user-summary">
-        <h1 class="user-welcome">Welcome User!</h1>
+        <h1 class="user-welcome"></h1>
         <p class="user-history"></p>
       </div>
       <div class="past-trips-display">
       </div>
     </div>
     <div class="right-container">
-      <div class="user-input-form">
-        <form class="user-inputs">
-          <div class="date-container">
-            <p class="date">Date:</p>
-            <input class="date-input" type="date" id="date">
-            <input class="date-input" type="date" id="date">
-          </div>
-          <div class="traveler-container">
-            <p class="travelers">Number of Travelers:</p>
-            <input class="travelers-input" type="number" id="numTravelers" min="1">
-          </div>
-          <div class="destination-container">
-            <p for="destination-input">Destination:</p>
-            <select name="destination" id="destination">
-              <option value="destination-one">JavaScript</option>
-              <option value="destination-two">Python</option>
-              <option value="destination-three">C++</option>
-              <option value="destination-four">Java</option>
-            </select>
-          </div>
-          <button class="add-data-button" type="button">Make Trip Request</button>
-        </form>
+      <div class="make-new-trip-container">
+        <div class="user-input-form">
+          <h1>Want to go on another trip?</h1>
+          <form class="user-inputs">
+            <div class="date-container">
+              <p class="date">Date:</p>
+              <input class="start-date-input" type="date" id="date">
+            </div>
+            <div class="duration-container">
+              <p class="duration">Duration:</p>
+              <input class="duration-input" type="number" id="durationTrip" min="1">
+            </div>
+            <div class="traveler-container">
+              <p class="travelers">Number of Travelers:</p>
+              <input class="travelers-input" type="number" id="numTravelers" min="1">
+            </div>
+            <div class="destination-container">
+              <p for="destinations">Destination:(price per day)</p>
+              <select class="destination-input" name="destination" id="destination">
+              </select>
+            </div>
+          <input class="add-data-button" type="submit" value="Make Trip Request">
+          </form>
+        </div>
+        <div class="new-trip-preview"> 
+        </div>
       </div>
       <div class="upcoming-trips-display">
         <p>Upcoming Trips!</p>

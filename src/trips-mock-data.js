@@ -2,8 +2,8 @@ const allTrips = {
   "trips": [
   {
   "id": 1,
-  "userID": 44,
-  "destinationID": 49,
+  "userID": 1,
+  "destinationID": 4,
   "travelers": 1,
   "date": "2022/09/16",
   "duration": 8,
@@ -32,7 +32,7 @@ const allTrips = {
   },
   {
   "id": 4,
-  "userID": 43,
+  "userID": 1,
   "destinationID": 14,
   "travelers": 2,
   "date": "2022/02/25",
@@ -202,12 +202,12 @@ const allTrips = {
   },
   {
   "id": 21,
-  "userID": 12,
+  "userID": 1,
   "destinationID": 10,
   "travelers": 1,
   "date": "2022/01/28",
   "duration": 18,
-  "status": "approved",
+  "status": "pending",
   "suggestedActivities": []
   }
   ]};

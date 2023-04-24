@@ -9,9 +9,16 @@ export function getData(destination) {
   })
 };
 
-export function postData(destination) {
-  return fetch(`http://localhost:3001/api/v1/${destination}`)
+export function postData(destination, dataToSend) {
+  return fetch(`http://localhost:3001/api/v1/${destination}`, {
+    method: 'POST', 
+    body: JSON.stringify(dataToSend),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
   .then((response) => {
+    console.log(response)
     if(!response.ok) {
     throw new Error(`${response.status}`)
     } else {
