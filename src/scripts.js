@@ -62,7 +62,7 @@ const displayPage = (tripsClass, destinationsClass) => {
     pastTrips.innerHTML +=
       `
     <div class="past-destination-container">
-    <img class="past-destination" src="${trip.image}">
+    <img class="past-destination" src="${trip.image}" alt="${trip.alt}">
     ${trip.destination}
     </div>
     `
@@ -91,8 +91,8 @@ const displayPage = (tripsClass, destinationsClass) => {
 
     upcomingTrips.innerHTML +=
       `
-    <div class="past-destination-container">
-    <img class="past-destination" src="${trip.image}">
+    <div class="upcoming-destination-container">  
+    <img class="upcoming-destination" src="${trip.image}" alt="${trip.alt}">
     ${trip.destination}
     </div>
     `
