@@ -72,16 +72,34 @@ time, mark, audio, video {
   flex-direction: column;
 }
 
-.user-input-form {
+.make-new-trip-container {
   width: 100%;
-  height: 300px;
   display: flex;
-  flex-direction: column;
 }
 
-.date-container, .traveler-container, .destination-container {
+.user-inputs {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-input-form {
+  width: 50%;
+  height: 500px;
+}
+
+.date-container, .duration-container, .traveler-container, .destination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.new-trip-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .past-trips-display, .upcoming-trips-display {

@@ -4,10 +4,29 @@ class TripsClass {
     this.des = destinationsData
   }
 
+  buildNewTrip = (userID, destinationID, travelers, date, duration) => {
+    return {
+      id: this.tri.trips.length += 1, 
+      userID: userID,
+      destinationID: destinationID,
+      travelers: travelers,
+      date: date, 
+      duration: dur,
+      status: 'pending',
+      suggestedActivities: [],
+    }
+  }
+
   getUserTrips = (userID) => {
     return this.tri.trips
       .filter((trip) => {
-      return trip.userID === userID
+      return trip.userID === userID && trip.status === 'approved'
+    })
+  }
+  getUserFutureTrips = (userID) => {
+    return this.tri.trips
+      .filter((trip) => {
+      return trip.userID === userID && trip.status === 'pending'
     })
   }
   getUserDestinations = (userID) => {
