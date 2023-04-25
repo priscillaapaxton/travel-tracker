@@ -7,12 +7,30 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <nav class="logout">
+  <nav class="logout hidden" id="logoutHide">
     <button class="logout-button" type="button">logout</button>
   </button>
-  </nav>
-  <main class="main">
-    <div class="left-container">
+</nav>
+<main class="main">
+    <div class="user-login-page" id="beforeLogin">
+      <div class="user-login-container" id="beforeLogin">
+        <p class="user-welcome-login">Welcome to Travel Tracker</p>
+        <p class="user-login">Please enter information below to login</p>
+        <form class="login-inputs">
+          <div class="username-container">
+            <label for="username">username:</label>
+            <input class="username-input" type="username" id="usernameInput" min="1">
+          </div>
+          <div class="passoword-container">
+            <label for="password">password:</label>
+            <input class="password-input" type="password" id="passwordInput" min="1">
+          </div>
+          <input class="login-button" type="submit" value="login">
+        </form>
+        <p class="incorrect-login"></p>
+      </div>
+    </div>
+    <div class="left-container hidden" id="leftHide">
       <div class="user-summary">
         <h1 class="user-welcome"></h1>
         <p class="user-history"></p>
@@ -23,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="right-container">
+    <div class="right-container hidden" id="rightHide">
       <div class="make-new-trip-container">
         <div class="user-input-form">
           <h1>Want to go on another trip?</h1>

@@ -35,7 +35,7 @@ class NewTripClass {
     })
     return userTrips.reduce((acc, currentTrip) => {
       acc += currentTrip
-      return acc
+      return Math.round(acc)
     }, 0)
   }
   makeNewTripObject = (userID, destinationID, travelers, date, duration) => {

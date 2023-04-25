@@ -1,29 +1,16 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
 
 // Fetch Requests
 import { getData } from './apiCalls';
 import { postData } from './apiCalls';
 
 // Local Data
-// import TripsClass from './trips-class';
 import NewTripClass from './new-trip-class';
 import DestinationsClass from './destinations-class';
 
-//functions
-function getRandomInt() {
-  return Math.floor(Math.random() * 49 + 1);
-};
 
 //Query Selectors & variables
 const welcomeUser = document.querySelector('.user-welcome')
-const randomNum = getRandomInt();
 const totalSpent = document.querySelector('.user-history')
 const pastTrips = document.querySelector('.past-trips-display')
 const upcomingTrips = document.querySelector('.upcoming-trips-display')
@@ -34,31 +21,58 @@ const durationInput = document.querySelector('.duration-input')
 const travelersInput = document.querySelector('.travelers-input')
 const destinationInput = document.querySelector('.destination-input')
 const addDataButton = document.querySelector('.add-data-button')
-
-
+const usernameInput = document.querySelector('.username-input')
+const passwordInput = document.querySelector('.password-input')
+const loginButton = document.querySelector('.login-button')
+const incorrectLogin = document.querySelector('.incorrect-login')
+const loginHide = document.getElementById('beforeLogin')
+const navHidden = document.querySelector('.logout')
+const leftContainterHidden = document.querySelector('.left-container')
+const rightContainerHidden = document.querySelector('.right-container')
+let userLoginID
+const USDollar = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
 
 const getDataForPage = () => {
   getData('trips').then((tripsData) => {
     getData('destinations').then((destinationsData) => {
       const tripsClass = new NewTripClass(tripsData, destinationsData)
       const destinationsClass = new DestinationsClass(destinationsData)
+
       displayPage(tripsClass,destinationsClass)
-      // upcomingTrips.innerHTML = ''
       startDateInput.value = ''
       durationInput.value = ''
       travelersInput.value = ''
-      // destinationInput.innerHTML = ''
+      newTripPreview.innerHTML = ''
+    })
+    .catch((error) => {
+      console.log(error)
+      totalSpent.innerHTML = `
+      Network unavailable. Sorry!
+      `
+      pastTrips.innerHTML = `
+      Network unavailable. Sorry!
+      `
+    })
+    .catch((error) => {
+      console.log(error)
+      totalSpent.innerHTML = `
+      Network unavailable. Sorry!
+      `
+      pastTrips.innerHTML = `
+      Network unavailable. Sorry!
+      `
     })
   })
 }
 
 const displayPage = (tripsClass, destinationsClass) => {
-  //display total spent
 
-  totalSpent.innerText = `You've spent $${tripsClass.getUserSpent(randomNum)} on trips this year. You sure love to travel!`
+  totalSpent.innerText = `You've spent ${USDollar.format(tripsClass.getUserSpent(userLoginID)).slice(0, -3)} on trips this year. You sure love to travel!`
 
-  //display past trips
-  tripsClass.getUserPastDestinations(randomNum).forEach((trip) => {
+  tripsClass.getUserPastDestinations(userLoginID).forEach((trip) => {
     pastTrips.innerHTML +=
       `
     <div class="past-destination-container">
@@ -66,18 +80,17 @@ const displayPage = (tripsClass, destinationsClass) => {
     ${trip.destination}
     </div>
     `
-  //display trip options
+
   tripsClass.des.des.destinations.forEach((destination) => {
     destinationOpions.innerHTML += `<option value="${destination.id}">${destination.destination}, $${destination.estimatedLodgingCostPerDay}</option>`
   })
 
-  //display trip calculation
-  
   const displayCalculation = (event) => {
     if(startDateInput.value && durationInput.value && travelersInput.value && destinationInput.value) {
+      const location = destinationsClass.des.destinations[destinationInput.value - 1].destination
       newTripPreview.innerHTML = `
       <h1 class="user-trip-price">Estimated Trip Cost</h1>
-      <p>${durationInput.value} days in ${destinationInput.value} with ${travelersInput.value} people will cost ${destinationsClass.getTripPricePerDay(parseInt(destinationInput.value), parseInt(travelersInput.value), parseInt(durationInput.value))}</p>
+      <p>${durationInput.value} days in ${location} with ${travelersInput.value} people will cost ${destinationsClass.getTripPricePerDay(parseInt(destinationInput.value), parseInt(travelersInput.value), parseInt(durationInput.value))}</p>
       `
     }
   }
@@ -86,44 +99,65 @@ const displayPage = (tripsClass, destinationsClass) => {
   travelersInput.addEventListener('input', displayCalculation)
   destinationInput.addEventListener('input', displayCalculation)
 })
-  //display upcoming trips
-  tripsClass.getUserUpcomingDestinations(randomNum).forEach((trip) => {
 
-    upcomingTrips.innerHTML +=
-      `
-    <div class="upcoming-destination-container">  
-    <img class="upcoming-destination" src="${trip.image}" alt="${trip.alt}">
-    ${trip.destination}
-    </div>
+tripsClass.getUserUpcomingDestinations(userLoginID).forEach((trip) => {
+  upcomingTrips.innerHTML +=
     `
+  <div class="upcoming-destination-container">  
+  <img class="upcoming-destination" src="${trip.image}" alt="${trip.alt}">
+  ${trip.destination}
+  </div>
+  `
   })
-  //add new trips
-  addDataButton.addEventListener('click', (event) => {
-    event.preventDefault()
-    if(startDateInput.value && durationInput.value && travelersInput.value && destinationInput.value) {
-      const dataToSend = tripsClass.makeNewTripObject(randomNum, parseInt(destinationInput.value), parseInt(travelersInput.value), startDateInput.value.replace(/-/g, '/'), parseInt(durationInput.value))
-      
-      postData('trips', dataToSend).then((updatedTripsData) => {
-        console.log('line103', updatedTripsData)
-        upcomingTrips.innerHTML = ''
-        pastTrips.innerHTML = ''
-        getDataForPage()
-    })
-    }
+
+addDataButton.addEventListener('click', (event) => {
+  event.preventDefault()
+  if(startDateInput.value && durationInput.value && travelersInput.value && destinationInput.value) {
+    const dataToSend = tripsClass.makeNewTripObject(userLoginID, parseInt(destinationInput.value), parseInt(travelersInput.value), startDateInput.value.replace(/-/g, '/'), parseInt(durationInput.value))
+    
+    postData('trips', dataToSend).then((updatedTripsData) => {
+      upcomingTrips.innerHTML = ''
+      pastTrips.innerHTML = ''
+      getDataForPage()
   })
+  }
+})
 }
 
 window.addEventListener('load', () => {
-  //welcome user//
-  getData(`travelers/${randomNum}`)
-    .then((data) => {
-      welcomeUser.innerText = `Welcome ${data.name}!`
-    })
-    .catch((error) => {
-      console.log('user data error', error)
-    })
-    getDataForPage()
+  loginButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    if(usernameInput.value.slice(6) >= 1 && usernameInput.value.slice(6) <= 50 && usernameInput.value.slice(0, 6) === 'travel' && passwordInput.value >= 1 && passwordInput.value <= 50 && usernameInput.value.slice(6) === passwordInput.value) {
+      userLoginID = parseInt(usernameInput.value.slice(6))
+      loginHide.classList.add('hidden')
+      navHidden.classList.remove('hidden')
+      leftContainterHidden.classList.remove('hidden')
+      rightContainerHidden.classList.remove('hidden')
+     
+      getData(`travelers/${userLoginID}`)
+      .then((data) => {
+        welcomeUser.innerText = `Welcome ${data.name}!`
+      })
+      .catch((error) => {
+        console.log(error)
+        totalSpent.innerHTML = `
+        Network unavailable. Sorry!
+        `
+        pastTrips.innerHTML = `
+        Network unavailable. Sorry!
+        `
+      })
+      getDataForPage()
+    } else {
+      incorrectLogin.innerHTML = `
+      username and/or password do not match. please try again.
+      `
+      usernameInput.value = ''
+      passwordInput.value = ''
+    }
   })
+})
+
 
 
 

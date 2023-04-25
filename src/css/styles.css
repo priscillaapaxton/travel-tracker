@@ -9,6 +9,10 @@ body {
   font-family: sans-serif;
 }
 
+.hidden {
+  display: none!important;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28,6 +32,32 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+}
+
+.user-login-page {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-login-container {
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;;
+  border: solid black 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-welcome-login {
+  font-size: 24px;
+}
+
+.user-login {
+  font-size: 20px;
 }
 
 .logout {
@@ -68,6 +98,7 @@ time, mark, audio, video {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 30px;
 }
 
 .past-destination, .upcoming-destination {
