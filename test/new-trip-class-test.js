@@ -23,6 +23,9 @@ describe('new trip class', () => {
     assert.deepEqual(newTripClass.getUserUpcomingTrips(1), [allTrips.trips[20]])
     assert.deepEqual(newTripClass.getUserUpcomingTrips(420), [])
   })
+  it('should return the upcoming destinations of a given user', () => {
+    assert.deepEqual(newTripClass.getUserUpcomingDestinations(1), [allDestinations.destinations[9]])
+  })
   it('should return how much a given user has spent on past trips', () => {
     assert.equal(newTripClass.getUserSpent(1), 3553)
     assert.equal(newTripClass.getUserSpent(420), 0)
@@ -37,7 +40,7 @@ describe('new trip class', () => {
       date: '2023/07/16', 
       duration: 12,
       status: 'pending',
-      suggestedActivies: []
+      suggestedActivities: []
     })
   })
 })

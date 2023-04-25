@@ -7,7 +7,7 @@ class DestinationsClass {
       return destination.id === destinationID
     })
     tripBeforeTax = tripBeforeTax.estimatedFlightCostPerPerson * travelers + tripBeforeTax.estimatedLodgingCostPerDay * duration 
-    return tripBeforeTax + tripBeforeTax * .10
+    return Math.round(tripBeforeTax + tripBeforeTax * .10)
   }
 }
 
