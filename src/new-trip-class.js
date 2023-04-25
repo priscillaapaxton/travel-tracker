@@ -17,23 +17,23 @@ class NewTripClass {
       })
     })
   }
-  getUserUpcomingTrips = (userID) => {
-    return this.tri.trips.filter((trip) => {
+  getUserUpcomingDestinations = (userID) => {
+    return this.tri.trips
+    .filter((trip) => {
       return trip.userID === userID && trip.status === 'pending'
     })
-  }
-  getUserUpcomingDestinations = (userID) => {
-    return this.getUserUpcomingTrips(userID).map((trip) => {
+    .map((trip) => {
       return this.des.des.destinations.find((destination) => {
         return destination.id === trip.destinationID
       })
     })
   }
   getUserSpent = (userID) => {
-    const userTrips = this.getUserPastTrips(userID).map((trip) => {
+    return this.getUserPastTrips(userID)
+    .map((trip) => {
       return this.des.getTripPricePerDay(trip.destinationID, trip.travelers, trip.duration)
     })
-    return userTrips.reduce((acc, currentTrip) => {
+    .reduce((acc, currentTrip) => {
       acc += currentTrip
       return Math.round(acc)
     }, 0)
@@ -51,5 +51,6 @@ class NewTripClass {
     }
   } 
 }
-
 export default NewTripClass;
+
+
