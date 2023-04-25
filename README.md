@@ -18,7 +18,7 @@ Travel tracker displays a user's past and upcoming trips, calculates how much th
 
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
-![Demo]()
+![Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmRlNTZmOTgwYzYzOGU4YjliNjRjZmY4YzA3NGFlMGM2NTIyMDlkMSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/2OQXcLmLeB5Dk8cpWN/giphy.gif)
 
 ### Context:
 [//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
@@ -32,4 +32,4 @@ This application is my final project for Module Two of Turing's Front End Softwa
 
 ### Learning Goals:
 [//]: <> (What were the learning goals of this project? What tech did you work with?)
-
+This project demonstrates my understanding and use leveraging multiple APIs through get and post fetch requests. The application uses object oriented programming to handle and display data to the user in a relevant way. It is written in JavaScript, HTML, and CSS
