@@ -48,7 +48,6 @@ const getDataForPage = () => {
       newTripPreview.innerHTML = ''
     })
     .catch((error) => {
-      console.log(error)
       totalSpent.innerHTML = `
       Network unavailable. Sorry!
       `
@@ -56,15 +55,14 @@ const getDataForPage = () => {
       Network unavailable. Sorry!
       `
     })
-    .catch((error) => {
-      console.log(error)
-      totalSpent.innerHTML = `
-      Network unavailable. Sorry!
-      `
-      pastTrips.innerHTML = `
-      Network unavailable. Sorry!
-      `
-    })
+  .catch((error) => {
+    totalSpent.innerHTML = `
+    Network unavailable. Sorry!
+    `
+    pastTrips.innerHTML = `
+    Network unavailable. Sorry!
+    `
+  })
   })
 }
 
@@ -119,8 +117,13 @@ addDataButton.addEventListener('click', (event) => {
       upcomingTrips.innerHTML = ''
       pastTrips.innerHTML = ''
       getDataForPage()
-  })
-  }
+    })
+    } else {
+      newTripPreview.innerHTML = `
+      <h1 class="user-input-error">All Fields Required!</h1>
+      <p>please fill out all input fields</p>
+      `
+    }
 })
 }
 
@@ -139,7 +142,6 @@ window.addEventListener('load', () => {
         welcomeUser.innerText = `Welcome ${data.name}!`
       })
       .catch((error) => {
-        console.log(error)
         totalSpent.innerHTML = `
         Network unavailable. Sorry!
         `
